@@ -4,12 +4,10 @@ import bella.ridah.com.cookingParadise.model.Post;
 import bella.ridah.com.cookingParadise.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RestController
 public class PostController {
 
     PostService postService;
@@ -24,7 +22,7 @@ public class PostController {
         return "post";
     }
 
-    @GetMapping("/newPost")
+    @RequestMapping("/newPost")
     public String createPostForm(Model model){
         Post post = new Post();
         model.addAttribute("post", post);
