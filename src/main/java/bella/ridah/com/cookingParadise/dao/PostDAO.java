@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class PostDAO {
-    static PostRepository postRepository;
+     PostRepository postRepository;
 
     public PostDAO(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -19,16 +19,16 @@ public class PostDAO {
     public List<Post> getAllPosts() {
         return postRepository.findAll ();
     }
-    public static Post savePost(Post post){
-        return postRepository.save (post);
+    public  Post savePost(Post post){
+        return postRepository.save(post);
     }
 
-    public static Post getPostByID(Long id){
+    public Post getPostByID(Long id){
         return postRepository.findById(id).get();
     }
 
-    public static Post deletePostByID(Long id){
-       return postRepository.deletePostById(id);
+    public void deletePostByID(Long id){
+        postRepository.deleteById (id);
     }
 
 

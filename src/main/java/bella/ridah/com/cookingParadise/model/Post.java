@@ -5,28 +5,17 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
 public class Post {
-
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "post_id")
-    private Long id;
-
     @Id
-    @GeneratedValue
+    private Long id;
     private String title;
     private String content;
     private String author;
 
-    public Long getID() {
-        return id;
-    }
-
-    public void setID(Long id) {
-        this.id = id;
-    }
 
     public Post() {
     }

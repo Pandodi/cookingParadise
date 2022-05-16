@@ -8,10 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    PostDAO createPost(PostDAO postDAO);
-    PostDAO getPostById(long id);
-
-    Post deletePostById(long id);
 
 }
 

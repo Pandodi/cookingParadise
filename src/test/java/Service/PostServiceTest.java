@@ -46,7 +46,7 @@ class PostServiceTest extends MockitoExtension {
         Post newPost = new Post(null,"hereisTitle1", "andContent1", "authorr");
         Post postFromDatabase = new Post(1L,"TitlegoesHere", "Content", "author");
 
-        Mockito.when(postDAO.savePost(any())).thenReturn(postFromDatabase);
+        Mockito.when(postDAO.savePost (any())).thenReturn(postFromDatabase);
 
         Post postNew = unitUnderTest.addPost(newPost);
 
@@ -70,6 +70,8 @@ class PostServiceTest extends MockitoExtension {
         unitUnderTest.deletePostByID(1L);
 
         Mockito.verify(postDAO, Mockito.times(1)).deletePostByID(1L);
+        Mockito.verify(postDAO, Mockito.times(0)).savePost(any());
+
 
 
 
