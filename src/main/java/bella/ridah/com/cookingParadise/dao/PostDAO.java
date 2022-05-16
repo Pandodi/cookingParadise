@@ -16,23 +16,20 @@ public class PostDAO {
     }
 
 
-
     public List<Post> getAllPosts() {
-        List<Post> all = PostRepository.findAllPosts();
-        return all;
+        return postRepository.findAll ();
     }
-
     public static Post savePost(Post post){
         return postRepository.save (post);
     }
-
 
     public static Post getPostByID(Long id){
         return postRepository.findById(id).get();
     }
 
-    public void deletePostByID(Long id){
-        PostRepository.deletePostByID(id);
+    public static Post deletePostByID(Long id){
+       return postRepository.deletePostById(id);
     }
+
 
 }

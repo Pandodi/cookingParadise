@@ -28,7 +28,7 @@ class PostServiceTest extends MockitoExtension {
     }
 
     @Test
-    void getAllRecipes() {
+    void getAllPost() {
         List<Post> postFromDatabase = new ArrayList<> ();
         postFromDatabase.add(new Post ("blog1", "content1", "author1"));
         postFromDatabase.add(new Post("blog2", "content2", "author2"));
@@ -46,6 +46,8 @@ class PostServiceTest extends MockitoExtension {
         Post newPost = new Post(null,"hereisTitle1", "andContent1", "authorr");
         Post postFromDatabase = new Post(1L,"TitlegoesHere", "Content", "author");
 
+        Mockito.when(postDAO.savePost(any())).thenReturn(postFromDatabase);
+
         Post postNew = unitUnderTest.addPost(newPost);
 
         assertEquals(1, postNew.getId());
@@ -58,7 +60,7 @@ class PostServiceTest extends MockitoExtension {
 
         Mockito.when(postDAO.getPostByID(1L)).thenReturn(postFromDatabase);
 
-        Post postNew = unitUnderTest.getPostByID(1L);
+        Post postNew = unitUnderTest.getPostById(1L);
 
         assertEquals(1L, postNew.getId());
     }
