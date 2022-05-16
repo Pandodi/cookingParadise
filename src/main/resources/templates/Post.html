@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+</head>
+<body>
+<div th:object = "${post}">
+    <h1 th:text = "${post.title}"></h1>
+    <hr>
+    <p th:text = "${post.content}"></p>
+    <hr>
+    <p th:text = "${post.author}"></p>
+    <hr>
+</div>
+
+</body>
+</html>
