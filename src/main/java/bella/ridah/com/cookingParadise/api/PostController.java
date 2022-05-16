@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("api/posts")
+@RequestMapping
 public class PostController {
 
     PostService postService;
@@ -21,11 +21,11 @@ public class PostController {
 
     @GetMapping("/")
     public String listPost(Model model) {
-        model.addAttribute("post", postService.getAllPosts());
-        return "post";
+        model.addAttribute("posts", postService.getAllPosts());
+        return "posts";
     }
 
-    @RequestMapping("/newPost")
+    @RequestMapping("/create")
     public String createPostForm(Model model){
         Post post = new Post();
         model.addAttribute("post", post);
@@ -42,15 +42,13 @@ public class PostController {
 
     @GetMapping("/post/{id}")
     public String viewPost(@PathVariable Long id, Model model){
-        model.addAttribute("PostDAO", postService.getPostById(id));
+        model.addAttribute("post", postService.getPostById(id));
         return "post";
     }
 
-    @DeleteMapping ("/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id){
-
+    @GetMapping ("/{id}")
+    public String deletePost(@PathVariable Long id){
         postService.deletePostByID(id);
-
-        return new ResponseEntity<>("Post entity deleted successfully.", HttpStatus.OK);
+        return "redirect:/";
     }
 }

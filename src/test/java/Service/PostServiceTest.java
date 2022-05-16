@@ -3,18 +3,18 @@ package Service;
 import bella.ridah.com.cookingParadise.dao.PostDAO;
 import bella.ridah.com.cookingParadise.model.Post;
 import bella.ridah.com.cookingParadise.service.PostService;
-import net.bytebuddy.matcher.ElementMatchers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
+import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.bytebuddy.matcher.ElementMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.util.AssertionErrors.assertNotNull;
+
+import static org.mockito.ArgumentMatchers.any;
+
 
 class PostServiceTest extends MockitoExtension {
 
@@ -43,8 +43,8 @@ class PostServiceTest extends MockitoExtension {
 
     @Test
     void addPost() {
-        Post newPost = new Post(null,"hereisTitle1", "andContent1", "authorr");
-        Post postFromDatabase = new Post(1L,"TitlegoesHere", "Content", "author");
+        Post newPost = new Post(3L,"here is Title1", "andContent1", "author");
+        Post postFromDatabase = new Post(1L,"Title goes Here", "Content", "author");
 
         Mockito.when(postDAO.savePost (any())).thenReturn(postFromDatabase);
 
@@ -71,8 +71,6 @@ class PostServiceTest extends MockitoExtension {
 
         Mockito.verify(postDAO, Mockito.times(1)).deletePostByID(1L);
         Mockito.verify(postDAO, Mockito.times(0)).savePost(any());
-
-
 
 
     }

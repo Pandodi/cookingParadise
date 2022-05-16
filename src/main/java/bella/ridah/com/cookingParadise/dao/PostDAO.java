@@ -15,11 +15,10 @@ public class PostDAO {
         this.postRepository = postRepository;
     }
 
-
     public List<Post> getAllPosts() {
-        return postRepository.findAll ();
+        return postRepository.findAll();
     }
-    public  Post savePost(Post post){
+    public Post savePost(Post post){
         return postRepository.save(post);
     }
 
@@ -28,7 +27,7 @@ public class PostDAO {
     }
 
     public void deletePostByID(Long id){
-        postRepository.deleteById (id);
+        postRepository.deleteById(id);
     }
 
 
