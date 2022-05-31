@@ -1,7 +1,5 @@
 package bella.ridah.com.cookingParadise.model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,7 +50,7 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getEmailId() {
+    public String getEmailId(String s) {
         return emailId;
     }
 

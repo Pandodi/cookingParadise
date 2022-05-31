@@ -1,29 +1,82 @@
 package bella.ridah.com.cookingParadise.service;
 
+import bella.ridah.com.cookingParadise.DAO.EmployeeDAO;
+import bella.ridah.com.cookingParadise.model.Employee;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeServiceTest extends MockitoExtension {
 
     static EmployeeService unitUnderTest;
+    @Mock
+    private static EmployeeDAO employeeDAO;
 
+    @BeforeAll
+    public static void init() {
+        employeeDAO = Mockito.mock(EmployeeDAO.class);
+        unitUnderTest = new EmployeeService(employeeDAO);
+    }
 
 
     @Test
-    void createEmployee() {
+    void getAllEmployees() {
     }
 
     @Test
-    void getEmployees() {
+    @DisplayName ("Verify that findEmployeeByID() returns specific employee from database")
+    void findEmployeeByID() {
+
+        Employee employeeFromDataBase = new Employee ();
+        employeeFromDataBase.setId (1L);
+        employeeFromDataBase.setFirstName ("isabella");
+
+        Mockito.when (employeeDAO.findEmployeeByID (1L)).thenReturn (Optional.of(employeeFromDataBase));
+
+        //Testing
+        Employee verifiedEmployee = unitUnderTest.findEmployeeByID (1L);
+
+        //Verifying
+        //Verify
+        assertEquals(1, verifiedEmployee.getId ());
+        assertEquals("isabella", verifiedEmployee.getFirstName ());
+    }
+
+
+    @Test
+    @DisplayName ("Make sure that RemoveEmployee will call the right method")
+    void removeEmployee() {
+
+        unitUnderTest.removeEmployee (5L);
+        Mockito.verify (employeeDAO, Mockito.times (1)).deleteEmployee (5L);
+
     }
 
     @Test
-    void updateEmployee() {
+    @DisplayName ("Verify that Employee is saved")
+    void addEmployee() {
+        Employee newEmployee = new Employee ();
+        newEmployee.setId (null);
+        newEmployee.setLastName ("Shabani");
+
+        Employee employeeFromDatabase = new Employee ();
+        employeeFromDatabase.setId (4L);
+        employeeFromDatabase.setLastName ("Shabani");
+
+        Mockito.when (employeeDAO.saveEmployee (newEmployee)).thenReturn (employeeFromDatabase);
+
+        Employee employee = unitUnderTest.addEmployee (newEmployee);
+
+        assertEquals (4, employee.getId ());
+        assertEquals ("Shabani", employee.getLastName ());
+
     }
 
-    @Test
-    void deleteEmployee() {
-    }
 }

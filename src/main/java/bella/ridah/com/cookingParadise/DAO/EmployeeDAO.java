@@ -34,7 +34,7 @@ public class EmployeeDAO {
         Employee employee = repository.findById(Id).get();
         employee.setFirstName(employeeDetails.getFirstName());
         employee.setLastName(employeeDetails.getLastName());
-        employee.setEmailId(employeeDetails.getEmailId());
+        employee.setEmailId(employeeDetails.getEmailId("bellashabani@Gmail.com"));
 
         return repository.save(employee);
     }
