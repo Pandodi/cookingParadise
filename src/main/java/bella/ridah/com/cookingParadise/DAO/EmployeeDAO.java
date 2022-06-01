@@ -30,12 +30,5 @@ public class EmployeeDAO {
         return repository.save (employee);
     }
 
-    public Employee updateEmployee(Long Id, Employee employeeDetails) {
-        Employee employee = repository.findById(Id).get();
-        employee.setFirstName(employeeDetails.getFirstName());
-        employee.setLastName(employeeDetails.getLastName());
-        employee.setEmailId(employeeDetails.getEmailId("bellashabani@Gmail.com"));
 
-        return repository.save(employee);
-    }
 }

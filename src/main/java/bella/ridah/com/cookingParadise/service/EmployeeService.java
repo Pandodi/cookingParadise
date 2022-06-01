@@ -11,8 +11,6 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-
-
     private EmployeeDAO employeeDAO;
 
     public EmployeeService(EmployeeDAO employeeDAO) {
@@ -35,8 +33,5 @@ public class EmployeeService {
         return employeeDAO.saveEmployee (employee);
     }
 
-    public Employee updateEmployee(Long id, Employee employee) {
-        return employeeDAO.updateEmployee (id, employee);
-    }
 
 }
