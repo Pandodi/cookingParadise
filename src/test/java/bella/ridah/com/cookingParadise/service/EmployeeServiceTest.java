@@ -35,13 +35,13 @@ class EmployeeServiceTest extends MockitoExtension {
         employees.setId (3L);
         employees.setFirstName ("gris");
         employees.setLastName ("woff");
-        employees.setEmailId ("jaha@gmail.com");
+
 
         Employee employeeTwo = new Employee ();
         employeeTwo.setId (4L);
         employeeTwo.setFirstName ("nummertvå");
         employeeTwo.setLastName ("nummertvåå");
-        employeeTwo.setEmailId ("gris@grisen.com");
+
 
         List<Employee> employeesList = List.of (employees, employeeTwo);
         Mockito.when (employeeDAO.findAllEmployees ()).thenReturn (employeesList);
